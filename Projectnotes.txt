@@ -1,0 +1,633 @@
+
+#################################################################################
+______  ___  ___   _   _ _____ _____  ____________ _____   ___ _____ _____ _____ 
+|  _  \|_  |/ _ \ | \ | |  __ \  _  | | ___ \ ___ \  _  | |_  |  ___/  __ \_   _|
+| | | |  | / /_\ \|  \| | |  \/ | | | | |_/ / |_/ / | | |   | | |__ | /  \/ | |  
+| | | |  | |  _  || . ` | | __| | | | |  __/|    /| | | |   | |  __|| |     | |  
+| |/ /\__/ / | | || |\  | |_\ \ \_/ / | |   | |\ \\ \_/ /\__/ / |___| \__/\ | |  
+|___/\____/\_| |_/\_| \_/\____/\___/  \_|   \_| \_|\___/\____/\____/ \____/ \_/  
+
+###############################################################################                                                                                
+                                                                                 
+Version - 0.1 
+Build : Development build 
+Developer : citysiva180
+
+About: This project is from an online course by brad traversy. This is a real estate website 
+which has the below features 
+
+- A home page with search and filter options 
+- In the home page about 6 houses would be listed 
+- On clicking on a single house, it would take you to the details page of the hours.
+- You also have a profile on owners 
+- You have a contact module, admin module for users. 
+- You also have an about page. 
+
+############################################################################### 
+
+#========================================#
+| Chapter - 1 Creating the project setup |
+#========================================#
+
+It took a while for me to fully understand whats going on. To get through this step
+you need to know a lot of things. This includes virtual environments and how to use 
+the terminal to run commands in them. Activating them, deactivating them. Checking 
+which folder they are installed at etc. Only then you go ahead with other aspect. 
+
+Step-1 : Open your terminal and type the command "ls". Do you see the list of files there?
+        Check where you need your project to be stored. use cd and go to that project.
+        
+        Create folder in which your project will be found 
+        
+        "mkdir RealEstateProject"
+
+        Then use the below command to open the same in vs code. 
+
+        "code ."
+
+Step-2: Once the folder opens up, you will then need to create a virtual environment 
+
+        use the command "python3 -m venv ./venv "
+
+        If you see the above command, the second argument is the folder in which your 
+        virtual environment is about to be installed. So better be sure about the name 
+        that you would be giving to python virtual environment. [You could pip freeze]
+        check for package installations
+
+Step-3: Activate your virtual environment. 
+
+        To activate your virutal environment, first change to the environment using the 
+        cd command and then go type the below command. 
+        
+        source ./bin/activate 
+
+        Now if you check your terminal you could see a (venv) comming infront of your 
+        command line. If you need to confirm you have activated it, choose pip freeze 
+        command and you will see that it has no package installed. 
+
+        (venv) sivarajan@sivas-MacBook-Pro venv % pip freeze
+
+Step - 4: Install Django using the below command. 
+
+        "pip install django"
+          
+        On doing this, django will be installed  in your system. 
+        Also ensure your python iterpreter is something that you have installed specifically 
+        for this system. 
+
+
+        - Django admin. So this is a program within django. which helps in running some command and other aspects. 
+          So comming to django... we have this cli admin option called django admin
+
+        run the command "django-admin help"
+
+        it brings up a lot of commands which you could utilize. 
+
+Step - 5: Create a new project in django
+        
+        So basically what we did was --> Created a virtual environment --> Installed Django init. 
+        Now, we need to create a django project. 
+
+        To do this, you will need to use the command, django-admin startproject project name.
+
+        if you check your virtual environment folder, you could see a project called btre. This would be 
+        our new django project. 
+
+        Now, if you check the folder, you will find a file called manage.py. Now this file 
+        is literally everything that you need to run your project with. When you run this file with the command
+        
+        "python mange.py" 
+
+        it will show a list of commands in which the manage.py file could be used. Now most of these commands are the same
+        when it comes to comparin with django admin command. 
+
+        You will also understand that pylint is not installed. Just worry only if this comes up. 
+
+Step - 6: Using gitingore
+
+        So this is a version control system. There is a whole lot of story for this one.
+        Google for gitignore. Then use the file .gitignore then commit it. 
+
+
+Breaking down of an Django application structure file:
+
+Comming to this point, I started noticing changes only after the file / or when the app started to run. 
+To begin with, 
+
+Here is how the file structure looks like 
+
+- btre (folder)
+        :-- Another btre folder        --> for some unknown reason
+                :---> pycache folder 
+                :---> __Init__.py      --> Make sure that we could make the app as a package. keeps everything in order. 
+                :---> asgi.py
+                :---> settings.py      -->
+                :---> urls.py
+                :--->wsgi.py
+        :-- Manage.py file 
+        :--gitignore -->we just created this one 
+        :--db.sqlite3 ---> This file was created only after the server ran. But this a not a production level database. 
+                           
+File structure of a Django Project app. 
+
+1. pycache : This is a cache data. Cache data are nothing but logs of activites done in the apps. Stores the needed data to loads the app faster. 
+
+2. __init__.py: It makes the app as a package, so it could be installed and re-used. It also prevents some directory to stop hiding functions unintentionally. 
+
+3. Settings.py: This is where the settings of the apps is stored. 
+
+Here is how it looks: 
+
+So, I am not going to copy paste the data here... But lets keep it clean to understand what each part means. 
+
+import os:  
+        
+        This is a library import. This is utilized in many aspects of operating system libraries 
+
+Base Dir: 
+
+        Projects base directory. 
+
+Security Key: 
+
+        Its used in production area, and should be hidden during deployment. 
+
+Debugging: 
+
+        During development, we keep this on. Meaning, it will give us all the warning messages that we need. 
+        Meanwhile the same could not be kept true during production. This is only for the development phase. 
+
+Allowed hosts: 
+
+        You will need to put a list of hosts and domains for deployment. 
+
+Installed Apps:
+
+        Django Default apps are listed here. As your project grows you will need to add your apps in this list. 
+
+Middleware: 
+
+        Mostly security based files and libraries used. 
+
+Root_URL CONF: 
+
+        btre.urls --> This would be the base url of our app. When the request comes from the client, I am thinking it probably would be looking for this. 
+
+Templates:
+
+        So these are display templates. They are all mapped here. How does this help is that, they are integrated with HTML they help in displaying the views which we would construct. 
+
+WSGI.py: 
+
+        There is a wsgi.py file in our app. Its has some functionality. Not sure what this it and it would take a while for me to understand the same. 
+
+Databases: 
+
+        These are database settings that you could have. I am planning to build a project with databases. 
+
+Auth Password Validators: 
+
+        Password authentication
+
+Time zone and Language settings: 
+
+        As the name suggests, this is just a setting for language and time for our app. 
+
+Finally static files: 
+
+        They contain the static files such as css and javascript. 
+
+4. urls.py
+
+        Also known as the routing file, it contains all the paths to route our website to views and methods, or urls from another file, say admin url. 
+        Every time you create a new app, you will need to create a url for the same and you will need to map them in urls.py
+
+5. WSGI.py
+
+        Webserver gateway interface. Helps in transfering and receiving requests. 
+
+
+Finally completed this section and super happy on this!!!  :-) 
+
+
+#========================================#
+| Chapter - 2 Creating the a new app     |
+#========================================#
+
+So in this section we would be dealing with, creating new apps, models and views for the apps we have created. 
+We would then map them to our urls and get them completed from there. 
+
+So in this section we probably go ahead with creating home page. 
+
+Step - 1: Create a new app in your django project. 
+
+        Use the command, 
+                
+                "python manage.py startapp pages"
+
+        Breaking down of an application in a django project. 
+         
+        Ok, here is the file tree... 
+
+        ---> PAGES folder [This is our application which is a part of django project]
+
+                K----> Migrations folder : Basically updates all the database migrations in the database
+
+        :--> __init__.py : Helps in making the app a package. 
+        :--> admin.py    : if you want to show stuff in admin area 
+        :--> apps.py     : This shows the class of the config 
+        :--> models.py   : This is where models are created 
+        :--> tests.py    : To test our app
+        :--> views.py    : Creating methods are created in which urls are mapped. 
+
+
+Step - 2: Add your app in the settings.py where you have a list of installed app
+
+          Go to the settings.py file and then go check the list installed apps = []
+          Now type the app mapping like below 
+
+                'pages.apps.PagesConfig'
+
+                Your list will then look like this... 
+
+        INSTALLED_APPS = [
+                                'pages.apps.PagesConfig',---> I made a mistake here. I put as app.PagesConfig and it screwed up like anything
+                                'django.contrib.admin',  # controls admin area
+                                'django.contrib.auth',
+                                'django.contrib.contenttypes',
+                                'django.contrib.sessions',
+                                'django.contrib.messages',
+                                'django.contrib.staticfiles',
+                          ]        
+
+Step - 3: Now create a urls.py file in the application folder (pages.app)
+
+        from django.urls import path ---> Used to bring the path library 
+        from . import views.py ---> You will have a python file called view. Use this file to import the functions there
+
+        urlpatterns = [   ---> This is a list. Now this list is interpreted below 
+        
+        path('', views.index,name='index')
+        
+        ]
+
+        So what we are basically doing here is... 
+
+        urlname = [
+        
+        path  --> Utilized from path library
+        
+        ('', ---> indicates to home page
+        views.index,  ---> Its an import of index function from views
+        name ='index' ---> Now this is the actual name for this url that we have got. 
+        )
+        
+        ]
+
+        So understand that we are importing the view functions from the view file and then converting them into an url 
+        From here we are trying to name our url so the same could be utilized.
+
+
+Step - 4: Go to views.py python file and create the index function there. 
+
+        go to the views.py file. Now this file is present in the btre folder. There, create a function as shown below 
+
+        from django.shortcuts import render
+        from django.http import HttpResponse
+
+        def index(request):
+                return HttpResponse('<h1>Render something</h1>')
+
+        -----------------------------
+        What does this function mean?
+        -----------------------------
+        import render library which render's http reponses. 
+        And then import httpresponses, where you could send and receive responses. 
+        Now create a function called index. this function will render the html tag /h1
+
+Step - 5 : Go to main urls.py in the btre folder. There type the code as below 
+
+
+        from django.contralib import admin
+        from django.urls import path
+
+        urlpatterns = [
+        path('', include('pages.urls')), ----> Now we are including the urls page that we created for our pages app in the common urls package. 
+        path('admin/', admin.site.urls),       we are telling the app, that hey, I am having this Urls.page guy and I think he needs to be with you
+                                               So why dont you add him to your list? huh? and he gets added up/
+        ]
+
+
+
+
+
+So to conclude, we are creating our app and then we update the settings that our app is installed. 
+This helps django to look for our app. 
+
+We then create a urls.py file in our app, there whatever view function we have got we are asking that function to come there. 
+After we call them there, we convert them to urls. From there we name them as well. 
+
+Once we name them, we just register them again in the common url package. By this way we get to call the urls.py of our 
+project, which calls the urls.py of our app, when then calls the views.py where it renders a certain html code. 
+So we then create a html code templates, so the same could be utilized anywhere. 
+
+
+#=================================================#
+|   Chapter - 4 Adding New Template for our app   |
+#=================================================#
+
+Think templates are parents in which the web app will inherit some style. 
+So, you create a common template, and individual template. I guess this is where react.JS comes into picture. 
+If we could some how connect the templates file to dynamically pass data into react.app then UI will be react and 
+the path inside will be django that feeds the data to the database. 
+
+Ok, now getting into the steps involved in making this happen.... 
+
+Step - 1 : Create a folder called template
+
+        Django kind of understands that when you place a folder called template, it understands, these are html templates 
+        they could be utilized and re-utilized for any requirement. 
+
+        Now the templates that you require for your pages app, You could create a folder inside the template folder and place them in. 
+        
+Step - 2 : Go to settings.py there you could find a part called the Templates
+
+        Now remember to put your template in the root directory. and update the settings with the below code. 
+
+        "DIRS" : [os.path.join(BASE_DIR,'templates')], 
+
+Step - 3: Now create 2 files, index.html and about.html 
+
+        index.html --> provide a tag inside to know this is the index page
+        about.html --> again provide a tag to know what these pages are
+
+Step - 4: Now map them to the urls in pages folder.
+
+        urlpatterns = [
+        
+        path('',views.index, name=index),
+        path('',views.about, name=about),
+        
+        ]
+
+Step - 5: Update the views with the about and index methods
+
+        Go to views.py in pages folder. There create the below functions 
+
+        def index(request):
+                return render(request,'pages/index.html')
+
+        def about(request):
+                return render(request,'pages/about.html')
+
+        Now, you have created a template, then you mapped them to your url. 
+        Therein you also created views for them as well. 
+
+        So you have pipelined the urls and views and now, you need to initiate the flow. Meaning you need to add html design to see if the data is comming on. 
+
+Step - 6: Create a common template that could be extended to all your pages. 
+
+        Create a file called base.html, but dont create it in the pages folder in templates folder
+        instead create it outside. Now, you just go ahead with creating html template with emmet for this. 
+
+        To implement html in django, you will also need to know jinja. Jinja is a python HTML template making app. 
+        Now with this, you will be able to integrate html with django. 
+
+        Here is what you need to do... 
+
+         <body>
+                {% block content %} {% endblock %}
+         </body>
+
+         As you could see, the tags enclosed in the curly braces are the jinja templates. 
+
+Step - 7 Extend your common template to all your other html files. 
+
+        To extend your base template, simple use the below code. 
+
+        For index page 
+
+        {% extends './base.html'%}
+        {% block content%}
+        <h1>Hello index</h1>
+        {% endblock %}
+
+        For about page
+
+        {% extends './base.html'%}
+        {% block content%}
+        <h1>Hello about</h1>
+        {% endblock %}
+
+
+#===================================================#
+| Chapter - 5 Making the Template a Bootstrap file  |
+#===================================================#
+
+Now in adding boostrap file there were a lot of mini steps that we need to follow to make  it look pretty. 
+
+Step - 1: Copying the bootstrap assets and placing it in the btre folder and running collect static command. 
+
+        To start with, first we create a folder called static folder and place all our web content there. 
+        Then we use the command
+
+        python manage.py collectstatic
+
+        Which will bring all the static file folder to the main folder. Note that when you placed your folder, 
+        you might have placed it in the app folder, But as you run this command, a copy would be created in the main
+        folder there by adding a new folder inside called the admin folder. 
+
+        So basically what Django is doing is that, its collecting all the static file such as html, css and bootstrap files and holds them all in a single folder. 
+        This folder is called the static folder. 
+
+Step - 2: Copy pasting the bootstrap code in the base.html. 
+
+        I remember a time when I was working with ASP.NET and at this time when we built the website, we just created a masterpage
+        Now the master page will have the base template which all the pages would follow. This was the deal with this. 
+
+        Now similar to this masterpage, we have something called the base.html which is the base page for building our website. 
+        Now in this website, all the pages will be the same. So what we do here is we type in the below code. 
+
+        CODE:
+
+        {% load static %}
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'css/all.css' %}">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+        <!-- Custom -->
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  
+        <title>BT Real Estate</title>
+
+        </head>
+  
+                <body>
+   
+                
+                        {% include 'partials/_topbar.html'%}
+
+                        {% include 'partials/_navbar.html'%}
+
+                        {% block content %} {% endblock %}
+
+                        {% include 'partials/_footer.html'%}
+
+       
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+        <script src="{% static 'js/lightsbox.min.js'%}"></script>
+        <script src="{% static 'js/main.js'%}"></script>
+
+                </body>
+        </html>
+
+        KEENLY OBSERVE THE CODE ABOVE... ITS SUPER BASIC~       
+
+        Here is how its written 
+
+        1. Load static ---> Guessing this is inbuild function for all the jinja templates
+        2. html --> Tells the browser that this is an html file
+        3. head --> Note that head is different from header. Head is a file loading area 
+                    you keep all your css and bootstrap cdn file right here. 
+        4. title --> You place the title tag inbetween the html tag. 
+        5. Body tag --> In this place is where you place all your other html assets 
+
+        base.html
+                ---> top bar (A bar above nav bar) topbar.html
+                ---> Nav bar (A Nav bar with company logo) navbar.html
+                ---> Content Tag -- (This is where the content comes in) index.html
+                ---> footer (Footer html) footer.html
+        
+        For each of the components we adding a dedicated html file. Now all these html files could be re-Used
+        So far, I have never felt a framework that made very much sense while making a project. 
+
+        
+Step - 3: You will need to create all the html files that you have mentioned in the basehtml page.
+
+        if you keenly observe there isnt much techical in these steps. 
+        We just created a few html files, we copied and pasted the required bootstrap syntax. 
+        After this we just built syntex in the base html file for all the file references 
+        We just converted the assets from html to jinja
+        finally when we saved it and refreshed it we got the data loaded. 
+
+        If there is detail that needs to be added in this section, then its on the jinja template. 
+        Apart from that, the rest is all easy to work and build 
+
+#===================================================#
+| Chapter - 6 Indexing, About and Linking           |
+#===================================================#
+
+In the previous chapter we discussed on adding a common template, which is base.html and we added all the 
+pages relative to this. In this chapter we will be making the Index page and the listings 
+you do nothing but copy the html markup in the about page and the indext page and paste them in the markup. 
+Then you do some plumbing. You provide the correct naming of the file in jinja templates
+
+
+#========================================================#
+| Chapter - 7 Creating the listings URls and templates   |
+#========================================================#
+
+In this chapter we created, listings and realtors app. 
+Listings app is shows the listings of houses. It has another component called the listing. 
+This page brings only a single listings provided there. 
+
+Step - 1: Create the listings and realtors app using 
+
+                "python manage.py createapp listings"
+                "python maange.py createapp realtors"
+
+        Now you will find both apps created and respective folders will be created for them. 
+        Then you will need to proceed creating folders for theses apps in templates folder and 
+        add html files in them. 
+
+Step - 2: Copy the markup and proceed connecting them to the base.html.
+
+        Everytime you add new details, 
+        a few things have to be added. 
+
+        - add the app to the installed apps in settings.py 
+
+                INSTALLED_APPS = [
+                                'pages.apps.PagesConfig',
+                                'listings.apps.ListingsConfig',  --> Adding listings app to Installed apps. 
+                                'realtors.apps.RealtorsConfig',
+                                'django.contrib.admin',  # controls admin area
+                                'django.contrib.auth',
+                                'django.contrib.contenttypes',
+                                'django.contrib.sessions',
+                                'django.contrib.messages',
+                                'django.contrib.staticfiles',
+                                ]
+        
+        - create a urls.py file in the app folder
+          and bring the below code. 
+
+                        from django.urls import path
+                        from . import views
+
+                        urlpatterns = [
+                                 path('', views.index, name='listings'), 
+                                 path('<int:listing_id>', views.listing, name='listing'), ---> I could understand that, this would be the listings url link. This is linked to views.py 
+                                 path('search', views.search, name='search')
+                                     ]
+
+        - Checkout the views.py and create function based on the app you have created. 
+
+                from django.shortcuts import render
+
+                        # Create your views here.
+
+
+                                def index(request):
+                                        return render(request, 'listings/listings.html')
+
+                                        I guesss this function would be called in the urls.py page. 
+
+
+
+                                def listing(request):
+                                        return render(request, 'listing/listing.html')
+
+
+                                def search(request):
+                                        return render(request, 'listings/search.html')
+
+
+        - Finally checkout the main Urls.py file and update which url you are bringing to render. 
+
+        
+                        from django.contrib import admin
+                        from django.urls import path, include
+
+
+                        urlpatterns = [
+                                path('', include('pages.urls')),
+                                path('listings/', include('listings.urls')),  ---> Mapping is done here. 
+                                path('admin/', admin.site.urls),
+                                      ]
+
+        So if you keenly observed you actually create an app, map the app in installed apps, then you create static assets for this app. 
+        After creating static assets, you need to create a view for them. After creating a view you need to create urls for this view 
+        and then map them to the main urls page. 
+
+
+
+#===================================#
+| Chapter - 8 Database Migrations   |
+#===================================#
+
+
+As you know database cannot be directly created, but has to be modelled and migrated. 
+There are so many fields that needs to comes... 
+
+Within these 2 sections we are learning how to install 
