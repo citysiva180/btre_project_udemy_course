@@ -631,3 +631,154 @@ As you know database cannot be directly created, but has to be modelled and migr
 There are so many fields that needs to comes... 
 
 Within these 2 sections we are learning how to install 
+
+After doing this, I decided to complete the project and then revise the same by typing all the steps I have been doing to complete the project. 
+
+
+Let me complete the final chapter and then revise all the previous chapter. 
+
+#========================================#
+| Chapter - 10 Deployment in the cloud   |
+#========================================#
+
+So in this chapter we would completely be working with deployment of apps in the cloud. 
+The platform chosen is digital ocean cloud platform. 
+
+So what are we going to initialy is push our work to github repository. 
+
+For this, you will need to have... 
+
++-----------------------------+
+| Pushing your project to git |
++-----------------------------+
+
+1. Github account
+2. Git installed in your pc or mac. To do this, you will need to use the below command. 
+
+        - $ brew install git
+        - Brew is a package manager. Meaning its a dedicated software that runs in the terminal making your 
+        life easier with commands. 
+
+3. Now that git is installed in your system, you will need to create a new repository. 
+        - What is a repository? Its nothing but your code file. 
+        - Why are we pushing this to git? - Since a software app is always subjected to changes, keeping track of them is hard. 
+                                            So we use some kind of software that tracks all the chances done, by everyone. Avoids crashes of build versions
+        - So how to we create a repository. 
+
+                        - git init (directory name) --> Creates an empty git repository so application could be added. Ensure to provide the app name there. 
+                        - You could go to the website directly and start from there. 
+
+4. Now that you have created a repository, you will need to add your app. 
+        
+    
+        - Now open the folder in your terminal. 
+        - There type 
+                        
+                        'git add'
+
+        - Now type the below command
+
+                        git commit -m 'Initial Commit / or any commit name'  --> This will commit the file in the master branch. 
+        
+5. Add SSH/Https key along with your file. 
+
+        - What this does it logs into the server without having you logging in all the time. 
+        - Going back to your github page in github.com, select https if you dont have ssh key. Copy the command there, which says git add origin etc 
+          paste it in your terminal and press enter. 
+        - Then push this into the master directory. 
+
+Finally the project is pushed to Github. 
+
++----------------------------------+
+| Creating a digital ocean droplet |
++----------------------------------+
+
+So why do we need to load out our app in the cloud platform. 
+
+QUESTIONS...
+-------------
+1. So what is hosting?
+
+Its nothing but making your app, available in the internet so people could use it. 
+More like hosting customer who are visiting your site. 
+
+2. How could we do this? 
+
+- Using a hosting service. 
+- Buying and installing a new server and hosting it
+- Using cloud platforms, which are rented servers to host websites. 
+
+3. Why not use it in our local machine and host
+it from there?
+
+A lot of issues come here... 
+
+- You will need to keep your machine on all the time, only then the app is accessible. 
+- Compared to a hosted server your machine is not programmed to endure heavy traffic 
+- Hackers could easily hackin to your system 
+- Loads of computing power is wasted 
+- Your hardware will not only be incapable, it would soon detoriate, if you are going to host it like anything. 
+
+ok, you have convinced me to host my app in the internet, so how do we get to know about this digital ocean thingy... 
+its a cloud platform. Its nothing but a server which is avaialble all the time. 
+The cool this about this is that, it could scale up and down and has plenty of options such as Identity access management, security and all stuffs. 
+
+Creating account in digital ocean + Adding a droplet with ssh key.
+-----------------------------------------------------------------
+
+- lemme check if any tea is there... 
+
+1. Go to https://www.digitalocean.com
+2. Create an account with Github. This is better when you wish to load your app in the platform. 
+3. You will also need to pay for your purchase which is around 395 Indian rupees, super affordable. 
+4. As soon as you log in you will be in a dashboard
+5. Click on create a droplet.  ---> This is nothing but a vps - virtual private server [dedicated server] this will be hosted in linux
+6. Select the hosting planning then select where your app needs to be hosted from. 
+7. Then you will need to add an SSH key. 
+
+        --> Ok, How to do this? 
+
+        - Open your terminal and then type ssh [On creating this it would create a file that would be saved in home directory. But hidden]
+        - type ls -a which will list all the file where you will have a .ssh file 
+        - ls ./.ssh --> Now just run this command in your current directory to check the files. 
+        
+        output: 
+
+                sivarajan@sivas-MBP ~ % ls ./.ssh
+                LightSailSSHKey.pem	id_rsa.pub
+                id_rsa			known_hosts
+
+        - Now you will need to generate a key. For this, type ssh-keygen
+
+        Generating public/private rsa key pair. --> It will generate a key value 
+        Enter file in which to save the key (/Users/sivarajan/.ssh/id_rsa): /Users/sivarajan/.ssh/id_rsa_do --> I pushed the key to this folder and renamed it as digital ocean key 
+        Enter passphrase (empty for no passphrase):  --> I dint provide any passphrase 
+        Enter same passphrase again: 
+        Your identification has been saved in /Users/sivarajan/.ssh/id_rsa_do. --> This is the private key.. Dont know what this does. But it should be super private and its going to be inside my local machine. 
+        Your public key has been saved in /Users/sivarajan/.ssh/id_rsa_do.pub. --> Guess this is an access key for clients to access my app. 
+
+        - Now you will need to open the public key and put it in digital ocean
+        - To do this you will need to use the below command - cat ./.ssh/id_rsa_do.pub
+        - Once you press enter, it would generate a huge string. copy this string to add ssh to your digital ocean droplet. 
+
+8. Click create and it will create your digital ocean droplet with an ssh key. 
+
+After doing this you will have your Ip address comming up. This address will not work up cause we havent started anything or added any software. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
