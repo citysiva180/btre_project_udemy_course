@@ -4,7 +4,7 @@ autopep8==1.4.4
 certifi==2019.11.28
 chardet==3.0.4
 distlib==0.3.0
-Django==3.0.4
+Django==3.0.7
 filelock==3.0.12
 idna==2.9
 pipenv==2018.11.26
